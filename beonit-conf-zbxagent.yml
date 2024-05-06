@@ -1,17 +1,17 @@
 ---
-- hosts: all
-  become: yes
-  
-  tasks:  
-    - name: Configurar el agente de Zabbix
-      template:
+- name: Install and Configure Zabbix Agent on Ubuntu
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Configure Zabbix agent
+      ansible.builtin.template:
         src: zabbix_agentd.conf.j2
         dest: /etc/zabbix/zabbix_agentd.conf
-      notify:
-        - restart zabbix-agent
+      notify: restart zabbix-agent
 
-    handlers:
-      - name: restart zabbix-agent
-        service:
-          name: zabbix-agent
-          state: restarted
+  handlers:
+    - name: restart zabbix-agent
+      ansible.builtin.service:
+        name: zabbix-agent
+        state: restarted
