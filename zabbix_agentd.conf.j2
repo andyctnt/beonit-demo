@@ -1,18 +1,6 @@
-### General ###
-PidFile=/var/run/zabbix/zabbix_agentd.pid
-LogFile=/var/log/zabbix/zabbix_agentd.log
-LogFileSize=1
-DebugLevel=3
+PidFile=/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix-agent/zabbix_agentd.log
+LogFileSize=0
 Server={{ zabbix_agent_server }}
 ServerActive={{ zabbix_agent_server }}
-
-### Active checks related ###
-HostnameItem=system.hostname
-RefreshActiveChecks=120
-
-### User parameters ###
-UserParameter=custom.check,command_to_execute
-
-### Optional ###
-Timeout=30
-AllowRoot=1
+Include=/etc/zabbix/zabbix_agentd.conf.d/*.conf
