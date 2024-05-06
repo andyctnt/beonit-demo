@@ -2,15 +2,18 @@
 - hosts: all
   become: yes
   
-  vars:
-    zabbix_server_repo: 'https://repo.zabbix.com/zabbix/6.5/ubuntu'
   tasks:  
-    - name: Agregar repositorio de Zabbix
-      apt_repository:
-        repo: "{{ zabbix_server_repo }}"
+    - name: Import Zabbix Repository Key
+      ansible.builtin.apt_key:
+        url: https://repo.zabbix.com/zabbix-official-repo.key
+        state: present
+        
+    - name: Add Zabbix Repository
+      ansible.builtin.apt_repository:
+        repo: deb https://repo.zabbix.com/zabbix/6.5/ubuntu $(lsb_release -cs) main
         state: present
         update_cache: yes
-    
+      
     - name: Instalar el agente de Zabbix
       apt:
         name: zabbix-agent
