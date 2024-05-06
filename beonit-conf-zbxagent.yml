@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  
+  tasks:  
+    - name: Configurar el agente de Zabbix
+      template:
+        src: zabbix_agentd.conf.j2
+        dest: /etc/zabbix/zabbix_agentd.conf
+      notify:
+        - restart zabbix-agent
+
+    handlers:
+      - name: restart zabbix-agent
+        service:
+          name: zabbix-agent
+          state: restarted
