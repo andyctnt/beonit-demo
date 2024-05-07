@@ -13,7 +13,7 @@
       command: ufw enable
 
     - name: Bloquear tráfico ICMP desde una dirección IP específica
-      ufw:
+      community.general.ufw:
         rule: deny
         proto: http
         src: "{{ ip_a_bloquear }}"
