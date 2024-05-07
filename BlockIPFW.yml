@@ -14,9 +14,10 @@
       args:
         creates: /etc/ufw/ufw.conf
 
-    - name: Bloquear dirección IP específica
+    - name: Bloquear tráfico ICMP desde una dirección IP específica
       ufw:
         rule: deny
+        proto: http
         src: "{{ ip_a_bloquear }}"
 
     - name: Recargar UFW para aplicar cambios
