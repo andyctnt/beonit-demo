@@ -18,7 +18,7 @@
       community.general.ufw:
         rule: deny
         port: 80
-        proto: http
+        proto: tcp
         src: "{{ ip_a_bloquear }}"
 
     - name: Recargar UFW para aplicar cambios
