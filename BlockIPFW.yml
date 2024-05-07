@@ -17,6 +17,7 @@
     - name: Bloquear tráfico ICMP desde una dirección IP específica
       community.general.ufw:
         rule: deny
+        port: 80
         proto: http
         src: "{{ ip_a_bloquear }}"
 
