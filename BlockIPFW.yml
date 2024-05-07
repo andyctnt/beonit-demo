@@ -11,7 +11,9 @@
 
     - name: Habilitar UFW
       command: ufw enable
-
+      args:
+        creates: /etc/ufw/ufw.conf
+        
     - name: Bloquear tráfico ICMP desde una dirección IP específica
       community.general.ufw:
         rule: deny
