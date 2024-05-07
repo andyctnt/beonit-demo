@@ -1,0 +1,23 @@
+---
+- name: Bloquear una dirección IP específica con UFW
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Instalar UFW
+      apt:
+        name: ufw
+        state: present
+
+    - name: Habilitar UFW
+      command: ufw enable
+      args:
+        creates: /etc/ufw/ufw.conf
+
+    - name: Bloquear dirección IP específica
+      ufw:
+        rule: deny
+        src: "{{ ip_a_bloquear }}"
+
+    - name: Recargar UFW para aplicar cambios
+      command: ufw reload
