@@ -1,0 +1,25 @@
+---
+- name: Copiar archivo y reiniciar nginx en hosts Linux
+  hosts: all
+  become: yes 
+  tasks:
+    - name: Respaldo index
+      copy:
+        src: /var/www/beonit/html/dist/index.html
+        dest: /var/www/beonit/html/dist/pivot.html
+
+    - name: cambio de Mantenimiento a Principal
+      copy:
+        src: /var/www/beonit/html/dist/mantenimiento.html
+        dest: /var/www/beonit/html/dist/index.php
+
+    - name: Respaldo Mantenimiento
+      copy:
+        dest: /var/www/beonit/html/dist/pivot.html
+        src: /var/www/beonit/html/dist/mantenimiento.html
+        
+    - name: Reiniciar nginx
+      systemd:
+        name: nginx
+        state: restarted
+        enabled: yes
