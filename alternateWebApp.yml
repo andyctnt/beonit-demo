@@ -5,19 +5,13 @@
   tasks:
     - name: Respaldo index
       become: yes
-      ansible.builtin.copy:
-        remote_src=True
-        src: /home/usrcontroller/pagina/index.html
-        dest: /home/usrcontroller/pagina/pivot.html
-        owner: usrcontroller
-        group: usrcontroller
-        mode: '0777'
+      command: mv /home/usrcontroller/pagina/index.html /home/usrcontroller/pagina/pivot.html
 
     - name: cambio de Mantenimiento a Principal
       become: yes
       copy:
         src: /var/www/beonit/html/dist/mantenimiento.html
-        dest: /var/www/beonit/html/dist/index.php
+        dest: /var/www/beonit/html/dist/index.html
 
     - name: Respaldo Mantenimiento
       become: yes
