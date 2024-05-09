@@ -6,8 +6,8 @@
     - name: Respaldo index
       become: yes
       ansible.builtin.copy:
-        src: /var/www/beonit/html/dist/index.html
-        dest: /var/www/beonit/html/dist/pivot.html
+        src: /home/usrcontroller/pagina/index.html
+        dest: /home/usrcontroller/pagina/pivot.html
         owner: usrcontroller
         group: usrcontroller
         mode: '0777'
