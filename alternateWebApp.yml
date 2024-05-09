@@ -9,15 +9,11 @@
 
     - name: cambio de Mantenimiento a Principal
       become: yes
-      copy:
-        src: /var/www/beonit/html/dist/mantenimiento.html
-        dest: /var/www/beonit/html/dist/index.html
+      command: mv /var/www/beonit/html/dist/mantenimiento.html /var/www/beonit/html/dist/index.html
 
     - name: Respaldo Mantenimiento
       become: yes
-      copy:
-        dest: /var/www/beonit/html/dist/pivot.html
-        src: /var/www/beonit/html/dist/mantenimiento.html
+      command: mv /var/www/beonit/html/dist/pivot.html /var/www/beonit/html/dist/mantenimiento.html
         
     - name: Reiniciar nginx
       systemd:
