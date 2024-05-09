@@ -1,0 +1,34 @@
+---
+- name: Crear un nuevo usuario y su grupo en servidores Linux
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Crear el grupo para el usuario
+      ansible.builtin.group:
+        name: "{{ user_name }}"
+        state: present
+
+    - name: Crear el usuario con su grupo
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        comment: "Usuario de ejemplo"
+        uid: 1002
+        group: "{{ user_name }}"
+        createhome: yes
+        shell: /bin/bash
+        password: "{{ 'beonitdemo' | password_hash('sha512', 'sal') }}"
+
+    - name: Establecer permisos de sudo para el usuario
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/{{ user_name }}
+        content: '{{ user_name }} ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: Crear un directorio personalizado para el usuario
+      ansible.builtin.file:
+        path: /home/{{ user_name }}/beonit
+        state: directory
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0755'
