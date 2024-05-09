@@ -4,16 +4,19 @@
   become: yes 
   tasks:
     - name: Respaldo index
+      become: yes
       copy:
         src: /var/www/beonit/html/dist/index.html
         dest: /var/www/beonit/html/dist/pivot.html
 
     - name: cambio de Mantenimiento a Principal
+      become: yes
       copy:
         src: /var/www/beonit/html/dist/mantenimiento.html
         dest: /var/www/beonit/html/dist/index.php
 
     - name: Respaldo Mantenimiento
+      become: yes
       copy:
         dest: /var/www/beonit/html/dist/pivot.html
         src: /var/www/beonit/html/dist/mantenimiento.html
