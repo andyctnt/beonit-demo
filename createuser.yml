@@ -13,7 +13,6 @@
       ansible.builtin.user:
         name: "{{ user_name }}"
         comment: "Usuario de ejemplo"
-        uid: 1002
         group: "{{ user_name }}"
         createhome: yes
         shell: /bin/bash
