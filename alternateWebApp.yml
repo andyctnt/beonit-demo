@@ -5,7 +5,7 @@
   tasks:
     - name: Respaldo index
       become: yes
-      copy:
+      ansible.builtin.copy:
         src: /var/www/beonit/html/dist/index.html
         dest: /var/www/beonit/html/dist/pivot.html
         owner: usrcontroller
