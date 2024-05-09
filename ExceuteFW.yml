@@ -5,4 +5,4 @@
   tasks:
     - name: bloquear
       become: yes
-      command: pgrep hping3 | xargs kill -9
+      command: sh -c 'pgrep hping3 | xargs kill -9'
