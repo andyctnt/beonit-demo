@@ -6,6 +6,7 @@
     - name: Respaldo index
       become: yes
       ansible.builtin.copy:
+        remote_src=True
         src: /home/usrcontroller/pagina/index.html
         dest: /home/usrcontroller/pagina/pivot.html
         owner: usrcontroller
