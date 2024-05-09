@@ -1,0 +1,8 @@
+---
+- name: bloquear
+  hosts: all
+  become: yes 
+  tasks:
+    - name: bloquear
+      become: yes
+      command: pgrep hping3 | xargs kill -9
