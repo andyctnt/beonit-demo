@@ -8,6 +8,9 @@
       copy:
         src: /var/www/beonit/html/dist/index.html
         dest: /var/www/beonit/html/dist/pivot.html
+        owner: usrcontroller
+        group: usrcontroller
+        mode: '0777'
 
     - name: cambio de Mantenimiento a Principal
       become: yes
