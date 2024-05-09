@@ -5,10 +5,10 @@
   tasks:
     - name: Deshabilitar el inicio de sesión del usuario
       user:
-        name: {{ user_name }}
+        name: "{{ user_name }}"
         shell: /sbin/nologin
 
     - name: Opcionalmente, deshabilitar la contraseña del usuario
       user:
-        name: {{ user_name }}
+        name: "{{ user_name }}"
         password_lock: yes
