@@ -5,7 +5,7 @@
   tasks:
     - name: Respaldo index
       become: yes
-      command: mv /home/usrcontroller/pagina/index.html /home/usrcontroller/pagina/pivot.html
+      command: mv /var/www/beonit/html/dist/index.html /var/www/beonit/html/dist/pivot.html
 
     - name: cambio de Mantenimiento a Principal
       become: yes
